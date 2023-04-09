@@ -1,21 +1,33 @@
 import React, { useState } from "react";
 
-const Input = ({ onClickAddToDoItemData }) => {
+const Input = ({ setToDoItemDataList }) => {
   const [inputValue, setInputValue] = useState("");
 
-  const onChangeInput = (event) => {
-    setInputValue(event.target.value);
+  const onClickAddToDoItemData = (content) => () => {
+    setToDoItemDataList((prevState) => [
+      ...prevState,
+      {
+        id: prevState.length + 1,
+        content: content,
+        isChecked: false,
+        isUpdating: false,
+      },
+    ]);
   };
 
-  const onClickAddButton = () => {
+  const onChangeInput = (event) => {
+    setInputValue(() => event.target.value);
+  };
+
+  const onClickAddButton = () => () => {
     onClickAddToDoItemData(inputValue)();
-    setInputValue("");
+    setInputValue(() => "");
   };
   //버튼 누르면 state에 데이터 추가
   return (
     <div className="input_wrapper">
       <input type="text" value={inputValue} onChange={onChangeInput}></input>
-      <button onClick={onClickAddButton}>Add</button>
+      <button onClick={onClickAddButton()}>Add</button>
     </div>
   );
   /*

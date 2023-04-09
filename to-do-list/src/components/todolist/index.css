@@ -1,0 +1,8 @@
+.todo_item_container {
+  display: flex;
+  justify-content: center;
+}
+
+.checked {
+  text-decoration: line-through;
+}
