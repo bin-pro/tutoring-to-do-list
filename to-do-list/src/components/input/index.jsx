@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Input = ({ setToDoItemDataList }) => {
   const [inputValue, setInputValue] = useState("");
 
-  const onClickAddToDoItemData = (content) => () => {
+  const addToDoItemData = (content) => {
     setToDoItemDataList((prevState) => [
       ...prevState,
       {
@@ -20,7 +20,7 @@ const Input = ({ setToDoItemDataList }) => {
   };
 
   const onClickAddButton = () => () => {
-    onClickAddToDoItemData(inputValue)();
+    addToDoItemData(inputValue);
     setInputValue(() => "");
   };
   //버튼 누르면 state에 데이터 추가
