@@ -19,8 +19,6 @@ const ToDoItem = ({ toDoItemDataList, setToDoItemDataList }) => {
     setToDoItemDataList((prevState) => {
       const updatedList = [...prevState];
 
-      setUpdateInputValue(() => updatedList[id - 1].content);
-
       updatedList[id - 1] = {
         ...updatedList[id - 1],
         isUpdating: !updatedList[id - 1].isUpdating,
@@ -51,7 +49,7 @@ const ToDoItem = ({ toDoItemDataList, setToDoItemDataList }) => {
         ...updatedList[id - 1],
         isChecked: !updatedList[id - 1].isChecked,
       };
-      console.log("id:", id, "isChecked:", updatedList[id - 1].isChecked);
+      //console.log("id:", id, "isChecked:", updatedList[id - 1].isChecked);
       return updatedList;
     });
   };
