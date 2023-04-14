@@ -24,7 +24,6 @@ const ToDoItem = ({ toDoItemDataList, setToDoItemDataList }) => {
         isUpdating: !updatedList[id - 1].isUpdating,
       };
       return updatedList;
-      //업데이트할 아이템의 인덱스(id-1)에 해당하는 원소를 복사한 후 content를 업데이트합니다.
     });
   };
 
