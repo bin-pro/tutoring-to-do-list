@@ -4,21 +4,9 @@ import index from "./index.css";
 const ToDoItem = ({ toDoItemDataList, setToDoItemDataList }) => {
   const [updateInputValue, setUpdateInputValue] = useState("");
 
-  const onClickUpdateFinish = (id) => () => {
+  const onClickUpdate = (id) => () => {
     setToDoItemDataList((prevState) => {
       const updatedList = [...prevState];
-      updatedList[id - 1] = {
-        ...updatedList[id - 1],
-        isUpdating: !updatedList[id - 1].isUpdating,
-      };
-      return updatedList;
-    });
-  };
-
-  const onClickUpdateStart = (id) => () => {
-    setToDoItemDataList((prevState) => {
-      const updatedList = [...prevState];
-
       updatedList[id - 1] = {
         ...updatedList[id - 1],
         isUpdating: !updatedList[id - 1].isUpdating,
@@ -74,7 +62,7 @@ const ToDoItem = ({ toDoItemDataList, setToDoItemDataList }) => {
   return toDoItemDataList.map((toDoItemData) => {
     var isCheckedThenLineThrough = toDoItemData.isChecked ? "checked" : "";
 
-    const listContent = () => {
+    const renderListContent = () => {
       if (!toDoItemData.isUpdating) {
         return (
           <li
@@ -92,21 +80,19 @@ const ToDoItem = ({ toDoItemDataList, setToDoItemDataList }) => {
             type="text"
             value={toDoItemData.content}
             onChange={onChangeInput(toDoItemData.id)}
-          ></input>
+          />
         );
       }
     };
 
-    var updateToggle = !toDoItemData.isUpdating
-      ? onClickUpdateStart(toDoItemData.id)
-      : onClickUpdateFinish(toDoItemData.id);
+    var updateToggle = onClickUpdate(toDoItemData.id);
 
     return (
       <div
         key={`todo_item_wrapper_${toDoItemData.id}`}
         className="todo_item_container"
       >
-        {listContent()}
+        {renderListContent()}
 
         <input
           key={`todo_checkbox_${toDoItemData.id}`}

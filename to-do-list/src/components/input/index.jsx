@@ -19,15 +19,30 @@ const Input = ({ setToDoItemDataList }) => {
     setInputValue(() => event.target.value);
   };
 
-  const onClickAddButton = () => () => {
+  const onClickAddButton = () => {
+    if (inputValue === "") {
+      alert("공백을 입력할 수 없습니다.");
+      return;
+    }
     addToDoItemData(inputValue);
     setInputValue(() => "");
   };
   //버튼 누르면 state에 데이터 추가
+
   return (
     <div className="input_wrapper">
-      <input type="text" value={inputValue} onChange={onChangeInput}></input>
-      <button onClick={onClickAddButton()}>Add</button>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={onChangeInput}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            addToDoItemData(inputValue);
+            setInputValue("");
+          }
+        }}
+      ></input>
+      <button onClick={onClickAddButton}>Add</button>
     </div>
   );
   /*
