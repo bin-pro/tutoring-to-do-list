@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "../../components/input/index";
 import ToDoItem from "../../components/todolist/index";
+import "./index.css";
 
 const Main = () => {
   const [toDoItemDataList, setToDoItemDataList] = useState([]);
